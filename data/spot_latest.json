@@ -1,0 +1,71 @@
+{
+  "week": "2026.4.20~2026.4.26",
+  "source_url": "https://finance.sina.com.cn/wm/2026-04-29/doc-inhwefuw7887107.shtml",
+  "data": [
+    {
+      "province": "山西",
+      "da_min": 196.77,
+      "da_max": 364.3,
+      "da_avg": 280.0,
+      "rt_avg": 255.0,
+      "unit": "元/MWh"
+    },
+    {
+      "province": "广东",
+      "da_min": 364.35,
+      "da_max": 635.86,
+      "da_avg": 500.0,
+      "rt_avg": 544.0,
+      "unit": "元/MWh"
+    },
+    {
+      "province": "山东",
+      "da_min": 103.98,
+      "da_max": 424.92,
+      "da_avg": 264.0,
+      "rt_avg": 261.0,
+      "unit": "元/MWh"
+    },
+    {
+      "province": "陕西",
+      "da_min": 119.76,
+      "da_max": 300.24,
+      "da_avg": 210.0,
+      "rt_avg": 195.0,
+      "unit": "元/MWh"
+    },
+    {
+      "province": "江苏",
+      "da_min": 295.59,
+      "da_max": 372.6,
+      "da_avg": 334.0,
+      "rt_avg": 327.0,
+      "unit": "元/MWh"
+    },
+    {
+      "province": "安徽",
+      "da_min": 290.0,
+      "da_max": 416.04,
+      "da_avg": 353.0,
+      "rt_avg": 360.0,
+      "unit": "元/MWh"
+    },
+    {
+      "province": "蒙西",
+      "da_min": -20.38,
+      "da_max": 214.27,
+      "da_avg": 97.0,
+      "rt_avg": null,
+      "unit": "元/MWh"
+    },
+    {
+      "province": "辽宁",
+      "da_min": -67.49,
+      "da_max": 269.06,
+      "da_avg": 100.0,
+      "rt_avg": 118.0,
+      "unit": "元/MWh"
+    }
+  ],
+  "fetched_at": "2026-05-01T08:01:59.684259"
+}
