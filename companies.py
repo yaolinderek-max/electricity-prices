@@ -184,73 +184,235 @@ COMPANIES = {
         "full_name": "华能国际电力股份有限公司",
         "exchange": "上交所",
         "last_updated": "2026-05-01",
+        # 来源：用户提供《华能煤机整理.xlsx》；unit="合计"为电厂级汇总，equity_pct=权益比例
         "provinces": {
+            "黑龙江": {
+                "coal_units": [
+                    {"plant": "华能新华发电有限责任公司",   "unit": "合计", "mw": 600,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 70.0,  "note": "华能煤机整理"},
+                    {"plant": "华能鹤岗发电有限责任公司",   "unit": "合计", "mw": 1200, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 64.0,  "note": "华能煤机整理"},
+                    {"plant": "华能大庆热电有限公司",       "unit": "合计", "mw": 1200, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能伊春热电有限公司",       "unit": "合计", "mw": 600,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                ],
+                "gas_units": [],
+                "wind_mw": 0, "solar_mw": 0,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "吉林": {
+                "coal_units": [
+                    {"plant": "华能九台发电有限公司",       "unit": "合计", "mw": 700,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能长春热电二厂",           "unit": "合计", "mw": 1320, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                ],
+                "gas_units": [],
+                "wind_mw": 0, "solar_mw": 0,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "辽宁": {
+                "coal_units": [
+                    {"plant": "华能大连电厂",               "unit": "合计", "mw": 1400, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能大连热电有限责任公司",   "unit": "合计", "mw": 800,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能丹东电厂",               "unit": "合计", "mw": 700,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能营口电厂",               "unit": "合计", "mw": 1960, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能营口热电有限责任公司",   "unit": "合计", "mw": 660,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能仙人岛热电有限责任公司", "unit": "合计", "mw": 100,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                ],
+                "gas_units": [],
+                "wind_mw": 0, "solar_mw": 0,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "北京": {
+                "coal_units": [
+                    {"plant": "华能北京热电有限责任公司",   "unit": "合计", "mw": 770,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 41.0,  "note": "华能煤机整理"},
+                ],
+                "gas_units": [],
+                "wind_mw": 0, "solar_mw": 0,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "天津": {
+                "coal_units": [
+                    {"plant": "华能杨柳青热电有限责任公司", "unit": "合计", "mw": 1200, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 55.0,  "note": "华能煤机整理"},
+                ],
+                "gas_units": [],
+                "wind_mw": 0, "solar_mw": 0,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "河北": {
+                "coal_units": [
+                    {"plant": "华能上安电厂",               "unit": "合计", "mw": 2540, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                ],
+                "gas_units": [],
+                "wind_mw": 0, "solar_mw": 0,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "山西": {
+                "coal_units": [
+                    {"plant": "华能榆社发电有限责任公司",   "unit": "合计", "mw": 660,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能左权发电有限责任公司",   "unit": "合计", "mw": 1200, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 80.0,  "note": "华能煤机整理"},
+                ],
+                "gas_units": [],
+                "wind_mw": 0, "solar_mw": 0,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "内蒙古": {
+                "coal_units": [],
+                "gas_units": [],
+                "wind_mw": 1500, "solar_mw": 600,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "甘肃": {
+                "coal_units": [
+                    {"plant": "华能平凉发电有限责任公司",   "unit": "合计", "mw": 1990, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 65.0,  "note": "华能煤机整理"},
+                ],
+                "gas_units": [],
+                "wind_mw": 0, "solar_mw": 0,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
             "山东": {
                 "coal_units": [
-                    {"plant": "华能济南黄台电厂", "unit": "7号", "mw": 300, "type": "亚临界",  "cod": 2000, "status": "在运", "flexible": True,  "peak_cap_mw": 150, "coal_rate": 320, "note": ""},
-                    {"plant": "华能济南黄台电厂", "unit": "8号", "mw": 300, "type": "亚临界",  "cod": 2001, "status": "在运", "flexible": True,  "peak_cap_mw": 150, "coal_rate": 320, "note": ""},
-                    {"plant": "华能德州电厂",     "unit": "1号", "mw": 660, "type": "超超临界", "cod": 2014, "status": "在运", "flexible": True,  "peak_cap_mw": 330, "coal_rate": 283, "note": ""},
-                    {"plant": "华能德州电厂",     "unit": "2号", "mw": 660, "type": "超超临界", "cod": 2015, "status": "在运", "flexible": True,  "peak_cap_mw": 330, "coal_rate": 283, "note": ""},
+                    {"plant": "华能德州电厂",               "unit": "合计", "mw": 2600, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能济宁运河发电有限公司",   "unit": "合计", "mw": 1160, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 98.0,  "note": "华能煤机整理"},
+                    {"plant": "华能济宁电厂",               "unit": "合计", "mw": 700,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能辛店发电有限责任公司",   "unit": "合计", "mw": 660,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 95.0,  "note": "华能煤机整理"},
+                    {"plant": "华能威海发电有限责任公司",   "unit": "合计", "mw": 1960, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 60.0,  "note": "华能煤机整理"},
+                    {"plant": "华能日照电厂（一期）",       "unit": "合计", "mw": 700,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能日照电厂（二期）",       "unit": "合计", "mw": 1360, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 80.0,  "note": "华能煤机整理"},
+                    {"plant": "华能白杨河发电有限责任公司", "unit": "合计", "mw": 890,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能嘉祥发电有限责任公司",   "unit": "合计", "mw": 660,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 40.0,  "note": "华能煤机整理"},
+                    {"plant": "华能曲阜热电有限责任公司",   "unit": "合计", "mw": 440,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 40.0,  "note": "华能煤机整理"},
+                    {"plant": "华能济南黄台电厂",           "unit": "合计", "mw": 1200, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 72.0,  "note": "华能煤机整理"},
+                    {"plant": "华能烟台发电有限责任公司",   "unit": "合计", "mw": 505,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 80.0,  "note": "华能煤机整理"},
+                    {"plant": "华能莱芜发电有限责任公司",   "unit": "合计", "mw": 2660, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 80.0,  "note": "华能煤机整理"},
+                    {"plant": "华能八角热电有限责任公司",   "unit": "合计", "mw": 1340, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 80.0,  "note": "华能煤机整理"},
+                    {"plant": "华能临沂发电有限公司",       "unit": "合计", "mw": 700,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 60.0,  "note": "华能煤机整理"},
+                    {"plant": "华能聊城发电有限责任公司",   "unit": "合计", "mw": 930,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 60.0,  "note": "华能煤机整理"},
+                    {"plant": "华能众泰热电有限责任公司",   "unit": "合计", "mw": 290,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 80.0,  "note": "华能煤机整理"},
+                    {"plant": "华能青岛热电有限公司",       "unit": "合计", "mw": 700,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
                 ],
                 "gas_units": [],
                 "wind_mw": 400, "solar_mw": 500,
                 "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
             },
-            "内蒙古": {
+            "河南": {
                 "coal_units": [
-                    {"plant": "华能伊敏电厂", "unit": "1号", "mw": 500, "type": "亚临界",  "cod": 1992, "status": "在运", "flexible": True,  "peak_cap_mw": 250, "coal_rate": 325, "note": "坑口电站"},
-                    {"plant": "华能伊敏电厂", "unit": "2号", "mw": 500, "type": "亚临界",  "cod": 1994, "status": "在运", "flexible": True,  "peak_cap_mw": 250, "coal_rate": 325, "note": "坑口电站"},
-                    {"plant": "华能伊敏电厂", "unit": "3号", "mw": 600, "type": "超临界",   "cod": 2009, "status": "在运", "flexible": True,  "peak_cap_mw": 300, "coal_rate": 305, "note": "坑口电站"},
+                    {"plant": "华能沁北发电有限责任公司",   "unit": "合计", "mw": 2600, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 60.0,  "note": "华能煤机整理"},
+                    {"plant": "华能洛阳热电有限责任公司",   "unit": "合计", "mw": 700,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 80.0,  "note": "华能煤机整理"},
+                    {"plant": "华能渑池热电有限责任公司",   "unit": "合计", "mw": 700,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 60.0,  "note": "华能煤机整理"},
+                    {"plant": "华能安阳电厂",               "unit": "合计", "mw": 840,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 51.0,  "note": "华能煤机整理"},
                 ],
                 "gas_units": [],
-                "wind_mw": 1500, "solar_mw": 600,
+                "wind_mw": 0, "solar_mw": 0,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "江苏": {
+                "coal_units": [
+                    {"plant": "华能南通电厂",               "unit": "合计", "mw": 3400, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能南京电厂",               "unit": "合计", "mw": 640,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 70.0,  "note": "华能煤机整理"},
+                    {"plant": "华能金陵发电有限公司",       "unit": "合计", "mw": 2000, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 60.0,  "note": "华能煤机整理"},
+                    {"plant": "华能太仓发电有限责任公司",   "unit": "合计", "mw": 1900, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能江苏清洁能源园区热电",   "unit": "合计", "mw": 640,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 75.0,  "note": "华能煤机整理"},
+                    {"plant": "华能淮阴电厂",               "unit": "合计", "mw": 1720, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能苏州热电有限责任公司",   "unit": "合计", "mw": 640,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 53.0,  "note": "华能煤机整理"},
+                ],
+                "gas_units": [],
+                "wind_mw": 0, "solar_mw": 0,
                 "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
             },
             "上海": {
                 "coal_units": [
-                    {"plant": "华能上海石洞口二厂", "unit": "1号", "mw": 600, "type": "超临界", "cod": 1992, "status": "在运", "flexible": True, "peak_cap_mw": 300, "coal_rate": 308, "note": ""},
-                    {"plant": "华能上海石洞口二厂", "unit": "2号", "mw": 600, "type": "超临界", "cod": 1993, "status": "在运", "flexible": True, "peak_cap_mw": 300, "coal_rate": 308, "note": ""},
+                    {"plant": "华能上海石洞口第一电厂",     "unit": "合计", "mw": 1300, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能上海石洞口第二电厂",     "unit": "合计", "mw": 1200, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能上海发电有限责任公司",   "unit": "合计", "mw": 1320, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
                 ],
                 "gas_units": [],
                 "wind_mw": 0, "solar_mw": 50,
                 "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
             },
+            "重庆": {
+                "coal_units": [
+                    {"plant": "华能重庆珞璜发电有限责任公司", "unit": "合计", "mw": 2600, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 60.0, "note": "华能煤机整理"},
+                ],
+                "gas_units": [],
+                "wind_mw": 0, "solar_mw": 0,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
             "浙江": {
                 "coal_units": [
-                    {"plant": "华能玉环电厂", "unit": "1号", "mw": 1000, "type": "超超临界", "cod": 2006, "status": "在运", "flexible": True, "peak_cap_mw": 500, "coal_rate": 285, "note": "国内首台百万机组"},
-                    {"plant": "华能玉环电厂", "unit": "2号", "mw": 1000, "type": "超超临界", "cod": 2006, "status": "在运", "flexible": True, "peak_cap_mw": 500, "coal_rate": 285, "note": ""},
-                    {"plant": "华能玉环电厂", "unit": "3号", "mw": 1000, "type": "超超临界", "cod": 2007, "status": "在运", "flexible": True, "peak_cap_mw": 500, "coal_rate": 283, "note": ""},
-                    {"plant": "华能玉环电厂", "unit": "4号", "mw": 1000, "type": "超超临界", "cod": 2007, "status": "在运", "flexible": True, "peak_cap_mw": 500, "coal_rate": 283, "note": ""},
+                    {"plant": "华能长兴电厂",               "unit": "合计", "mw": 1320, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能玉环电厂",               "unit": "合计", "mw": 4000, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
                 ],
                 "gas_units": [],
                 "wind_mw": 200, "solar_mw": 300,
                 "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
             },
-            "海南": {
+            "安徽": {
                 "coal_units": [
-                    {"plant": "华能海口电厂", "unit": "1号", "mw": 350, "type": "亚临界", "cod": 2005, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": 318, "note": "待核实"},
-                    {"plant": "华能海口电厂", "unit": "2号", "mw": 350, "type": "亚临界", "cod": 2006, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": 318, "note": "待核实"},
+                    {"plant": "华能巢湖发电有限责任公司",   "unit": "合计", "mw": 1200, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 60.0,  "note": "华能煤机整理"},
                 ],
                 "gas_units": [],
-                "wind_mw": 200, "solar_mw": 100,
+                "wind_mw": 0, "solar_mw": 0,
                 "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
             },
-            "陕西": {
-                "coal_units": [],
+            "湖北": {
+                "coal_units": [
+                    {"plant": "华能武汉发电有限责任公司",   "unit": "合计", "mw": 2400, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 75.0,  "note": "华能煤机整理"},
+                    {"plant": "华能荆门热电有限责任公司",   "unit": "合计", "mw": 700,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能应城热电有限责任公司",   "unit": "合计", "mw": 700,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                ],
                 "gas_units": [],
-                "wind_mw": 600, "solar_mw": 400,
+                "wind_mw": 0, "solar_mw": 0,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "湖南": {
+                "coal_units": [
+                    {"plant": "华能岳阳发电有限责任公司",   "unit": "合计", "mw": 2500, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 55.0,  "note": "华能煤机整理"},
+                ],
+                "gas_units": [],
+                "wind_mw": 400, "solar_mw": 200,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "江西": {
+                "coal_units": [
+                    {"plant": "华能井冈山发电有限公司",     "unit": "合计", "mw": 1920, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能瑞金发电有限公司",       "unit": "合计", "mw": 2700, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 50.0,  "note": "华能煤机整理"},
+                    {"plant": "华能安源发电有限责任公司",   "unit": "合计", "mw": 1320, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                ],
+                "gas_units": [],
+                "wind_mw": 0, "solar_mw": 0,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "福建": {
+                "coal_units": [
+                    {"plant": "华能福州电厂",               "unit": "合计", "mw": 2720, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能罗源发电有限公司",       "unit": "合计", "mw": 1320, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                ],
+                "gas_units": [],
+                "wind_mw": 0, "solar_mw": 0,
+                "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "广东": {
+                "coal_units": [
+                    {"plant": "华能汕头发电有限责任公司",   "unit": "合计", "mw": 1200, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能海门电厂",               "unit": "合计", "mw": 4000, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 80.0,  "note": "华能煤机整理"},
+                ],
+                "gas_units": [],
+                "wind_mw": 0, "solar_mw": 0,
                 "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
             },
             "云南": {
-                "coal_units": [],
+                "coal_units": [
+                    {"plant": "华能滇东雨汪能源（滇东电厂）", "unit": "合计", "mw": 2400, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                    {"plant": "华能滇东雨汪能源（雨汪电厂）", "unit": "合计", "mw": 1200, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 100.0, "note": "华能煤机整理"},
+                ],
                 "gas_units": [],
                 "wind_mw": 1000, "solar_mw": 300,
                 "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
             },
-            "湖南": {
-                "coal_units": [],
+            "海南": {
+                "coal_units": [
+                    {"plant": "华能海口电厂",               "unit": "合计", "mw": 660,  "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 91.0,  "note": "华能煤机整理"},
+                    {"plant": "华能东方电厂",               "unit": "合计", "mw": 1400, "type": None, "cod": None, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "equity_pct": 91.0,  "note": "华能煤机整理"},
+                ],
                 "gas_units": [],
-                "wind_mw": 400, "solar_mw": 200,
+                "wind_mw": 200, "solar_mw": 100,
                 "generation": {"period": "2025年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
             },
         },
