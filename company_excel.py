@@ -142,6 +142,83 @@ def build_capacity_summary(ws, company_name, data):
     c.alignment = Alignment(horizontal="left", vertical="center", wrap_text=True)
     ws.row_dimensions[row].height = 22
 
+    # ── 装机数据完整度校验 ──────────────────────────────────────
+    rep = data.get("reported_capacity", {})
+    if rep:
+        row += 2
+        # 校验区标题行
+        ws.merge_cells(f"A{row}:G{row}")
+        ch = ws.cell(row=row, column=1,
+                     value=f"【装机数据完整度校验】  对照：{rep.get('source','年报')}  ({rep.get('year','')}年)")
+        ch.font = Font(name="微软雅黑", bold=True, size=10, color=C_HEADER_FG)
+        ch.fill = PatternFill("solid", fgColor="2E4057")
+        ch.alignment = Alignment(horizontal="left", vertical="center")
+        ws.row_dimensions[row].height = 20
+        row += 1
+
+        # 校验列头
+        val_headers = ["类型", "本表已录入(MW)", "年报公布(MW)", "覆盖率", "差距(MW)", "状态", "备注"]
+        for ci, h in enumerate(val_headers, 1):
+            _apply(ws, row, ci, _hdr(h, size=9))
+        ws.row_dimensions[row].height = 18
+        row += 1
+
+        checks = [
+            ("煤电",   total_coal,  rep.get("coal_mw")),
+            ("燃气",   total_gas,   rep.get("gas_mw")),
+            ("风电",   total_wind,  rep.get("wind_mw")),
+            ("光伏",   total_solar, rep.get("solar_mw")),
+        ]
+        compiled_total = total_coal + total_gas + total_wind + total_solar
+        rep_total = (rep.get("coal_mw") or 0) + (rep.get("gas_mw") or 0) + \
+                    (rep.get("wind_mw") or 0) + (rep.get("solar_mw") or 0)
+
+        for fuel_type, compiled, reported in checks:
+            bg = C_ODD if row % 2 == 1 else C_EVEN
+            if reported:
+                pct = compiled / reported * 100
+                gap = reported - compiled
+                if pct >= 80:
+                    status, status_bg = "✔ 基本完整", C_GOOD
+                elif pct >= 50:
+                    status, status_bg = "⚠ 部分缺失", C_PENDING
+                else:
+                    status, status_bg = "✘ 大量缺失", C_WARN
+                pct_str = f"{pct:.1f}%"
+            else:
+                gap, pct_str, status, status_bg = "—", "—", "年报无数据", bg
+
+            _apply(ws, row, 1, _cell(fuel_type, bg=bg, bold=True))
+            _apply(ws, row, 2, _cell(compiled,  bg=bg))
+            _apply(ws, row, 3, _cell(reported if reported else "—", bg=bg))
+            _apply(ws, row, 4, _cell(pct_str,   bg=bg))
+            _apply(ws, row, 5, _cell(gap,        bg=bg))
+            _apply(ws, row, 6, _cell(status,     bg=status_bg,
+                                     color="375623" if status_bg == C_GOOD
+                                     else ("7F6000" if status_bg == C_PENDING else "C00000")))
+            _apply(ws, row, 7, _cell("",          bg=bg))
+            ws.row_dimensions[row].height = 18
+            row += 1
+
+        # 合计校验行
+        pct_tot = compiled_total / rep_total * 100 if rep_total else 0
+        gap_tot  = rep_total - compiled_total
+        bg = "D9E1F2"
+        _apply(ws, row, 1, _cell("合计",           bg=bg, bold=True))
+        _apply(ws, row, 2, _cell(compiled_total,   bg=bg, bold=True))
+        _apply(ws, row, 3, _cell(rep.get("total_mw", rep_total), bg=bg, bold=True))
+        _apply(ws, row, 4, _cell(f"{pct_tot:.1f}%", bg=bg, bold=True))
+        _apply(ws, row, 5, _cell(round(gap_tot, 1),  bg=bg, bold=True))
+        if pct_tot >= 80:
+            tot_status, tot_sc = "✔ 基本完整", "375623"
+        elif pct_tot >= 50:
+            tot_status, tot_sc = "⚠ 部分缺失", "7F6000"
+        else:
+            tot_status, tot_sc = "✘ 大量缺失", "C00000"
+        _apply(ws, row, 6, _cell(tot_status, bg=bg, bold=True, color=tot_sc))
+        _apply(ws, row, 7, _cell("", bg=bg))
+        ws.row_dimensions[row].height = 20
+
 
 # ── Sheet 2：煤电&燃机明细 ─────────────────────────────────────
 def build_thermal_units(ws, company_name, data):
