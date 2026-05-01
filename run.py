@@ -51,10 +51,11 @@ def main():
         save_coal_cache(coal_data, COAL_CACHE)
         print(f"[run] 已缓存至 {COAL_CACHE}")
 
-    # 生成文件名（按当前年月）
-    ts = datetime.now().strftime("%Y%m%d_%H%M")
-    filename = f"electricity_prices_{ts}.xlsx"
-    output_path = os.path.join(OUTPUT_DIR, filename)
+    now = datetime.now()
+    month_dir = os.path.join(OUTPUT_DIR, now.strftime("%Y-%m"))
+    os.makedirs(month_dir, exist_ok=True)
+    filename = f"electricity_prices_{now.strftime('%Y%m%d_%H%M')}.xlsx"
+    output_path = os.path.join(month_dir, filename)
 
     generate_excel(spot_data, coal_data, output_path)
     print(f"\n✅ 报告已生成：{output_path}")
