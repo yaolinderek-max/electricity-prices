@@ -73,10 +73,24 @@ COMPANIES = {
                 "wind_mw": 300, "solar_mw": 100,
                 "generation": {"period": "2024年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
             },
+            "吉林": {
+                "coal_units": [
+                    # 辽源电厂（辽源市，吉林省，非辽宁省）
+                    {"plant": "大唐辽源发电有限公司", "unit": "1号", "mw": 300, "type": "亚临界", "cod": 2005, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": 325, "note": "热电联产"},
+                    {"plant": "大唐辽源发电有限公司", "unit": "2号", "mw": 300, "type": "亚临界", "cod": 2006, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": 325, "note": "热电联产"},
+                    # 长春热电
+                    {"plant": "大唐长春第二热电有限公司", "unit": "1号", "mw": 300, "type": "亚临界", "cod": 2007, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": 326, "note": "热电联产，待年报核实"},
+                    {"plant": "大唐长春第二热电有限公司", "unit": "2号", "mw": 300, "type": "亚临界", "cod": 2008, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": 326, "note": "热电联产，待年报核实"},
+                ],
+                "gas_units": [],
+                "wind_mw": 500, "solar_mw": 200,
+                "generation": {"period": "2024年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
             "辽宁": {
                 "coal_units": [
-                    {"plant": "大唐辽源发电有限公司", "unit": "1号", "mw": 300, "type": "亚临界", "cod": 2005, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": 325, "note": "待年报核实"},
-                    {"plant": "大唐辽源发电有限公司", "unit": "2号", "mw": 300, "type": "亚临界", "cod": 2006, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": 325, "note": "待年报核实"},
+                    # 辽宁本地煤电待年报核实（原"辽源"已移至吉林）
+                    {"plant": "大唐沈阳热电有限公司", "unit": "1号", "mw": 300, "type": "亚临界", "cod": 2003, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": 325, "note": "待年报核实"},
+                    {"plant": "大唐沈阳热电有限公司", "unit": "2号", "mw": 300, "type": "亚临界", "cod": 2004, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": 325, "note": "待年报核实"},
                 ],
                 "gas_units": [],
                 "wind_mw": 800, "solar_mw": 200,
@@ -136,20 +150,86 @@ COMPANIES = {
                 "wind_mw": 200, "solar_mw": 300,
                 "generation": {"period": "2024年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
             },
-            "甘肃": {
+            "天津": {
+                "coal_units": [
+                    {"plant": "大唐天津发电有限公司", "unit": "1号", "mw": 600, "type": "超临界", "cod": 2009, "status": "在运", "flexible": True, "peak_cap_mw": 180, "coal_rate": 308, "note": "待年报核实"},
+                    {"plant": "大唐天津发电有限公司", "unit": "2号", "mw": 600, "type": "超临界", "cod": 2010, "status": "在运", "flexible": True, "peak_cap_mw": 180, "coal_rate": 308, "note": "待年报核实"},
+                ],
+                "gas_units": [],
+                "wind_mw": 0, "solar_mw": 100,
+                "generation": {"period": "2024年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "北京": {
+                # 大唐京热以燃气热电联产为主，是北京最大燃气电力运营商之一
                 "coal_units": [],
+                "gas_units": [
+                    {"plant": "大唐北京热电有限公司（高井热电厂）", "unit": "1号燃机", "mw": 390, "type": "CCGT", "cod": 2008, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "note": "热电联产，待年报核实"},
+                    {"plant": "大唐北京热电有限公司（高井热电厂）", "unit": "2号燃机", "mw": 390, "type": "CCGT", "cod": 2009, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "note": "热电联产，待年报核实"},
+                    {"plant": "大唐北京热电有限公司（高井热电厂）", "unit": "3号燃机", "mw": 390, "type": "CCGT", "cod": 2012, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "note": "热电联产，待年报核实"},
+                    {"plant": "大唐北京热电有限公司（高井热电厂）", "unit": "4号燃机", "mw": 390, "type": "CCGT", "cod": 2013, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "note": "热电联产，待年报核实"},
+                    {"plant": "大唐郑常庄热电有限责任公司",         "unit": "1号燃机", "mw": 390, "type": "CCGT", "cod": 2015, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "note": "热电联产，待年报核实"},
+                    {"plant": "大唐郑常庄热电有限责任公司",         "unit": "2号燃机", "mw": 390, "type": "CCGT", "cod": 2016, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": None, "note": "热电联产，待年报核实"},
+                ],
+                "wind_mw": 0, "solar_mw": 50,
+                "generation": {"period": "2024年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "陕西": {
+                "coal_units": [
+                    # 渭河电厂（渭南），陕西主力煤电基地
+                    {"plant": "大唐渭河发电有限公司", "unit": "1号", "mw": 600, "type": "超临界",   "cod": 2008, "status": "在运", "flexible": True, "peak_cap_mw": 180, "coal_rate": 306, "note": "待年报核实"},
+                    {"plant": "大唐渭河发电有限公司", "unit": "2号", "mw": 600, "type": "超临界",   "cod": 2009, "status": "在运", "flexible": True, "peak_cap_mw": 180, "coal_rate": 306, "note": "待年报核实"},
+                    {"plant": "大唐渭河发电有限公司", "unit": "3号", "mw": 600, "type": "超超临界", "cod": 2018, "status": "在运", "flexible": True, "peak_cap_mw": 180, "coal_rate": 285, "note": "待年报核实"},
+                    {"plant": "大唐渭河发电有限公司", "unit": "4号", "mw": 600, "type": "超超临界", "cod": 2019, "status": "在运", "flexible": True, "peak_cap_mw": 180, "coal_rate": 285, "note": "待年报核实"},
+                ],
+                "gas_units": [],
+                "wind_mw": 600, "solar_mw": 500,
+                "generation": {"period": "2024年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "安徽": {
+                "coal_units": [
+                    # 大唐皖能电厂（淮南/蚌埠沿淮煤炭资源带）
+                    {"plant": "大唐皖能发电有限公司", "unit": "1号", "mw": 600, "type": "超临界", "cod": 2011, "status": "在运", "flexible": True, "peak_cap_mw": 180, "coal_rate": 308, "note": "待年报核实"},
+                    {"plant": "大唐皖能发电有限公司", "unit": "2号", "mw": 600, "type": "超临界", "cod": 2012, "status": "在运", "flexible": True, "peak_cap_mw": 180, "coal_rate": 308, "note": "待年报核实"},
+                ],
+                "gas_units": [],
+                "wind_mw": 300, "solar_mw": 400,
+                "generation": {"period": "2024年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "湖北": {
+                "coal_units": [
+                    {"plant": "大唐湖北发电有限公司", "unit": "1号", "mw": 600, "type": "超临界", "cod": 2010, "status": "在运", "flexible": True, "peak_cap_mw": 180, "coal_rate": 307, "note": "待年报核实"},
+                    {"plant": "大唐湖北发电有限公司", "unit": "2号", "mw": 600, "type": "超临界", "cod": 2011, "status": "在运", "flexible": True, "peak_cap_mw": 180, "coal_rate": 307, "note": "待年报核实"},
+                ],
+                "gas_units": [],
+                "wind_mw": 400, "solar_mw": 300,
+                "generation": {"period": "2024年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
+            },
+            "甘肃": {
+                "coal_units": [
+                    # 兰州第二热电厂（西固），甘肃最大热电联产机组之一
+                    {"plant": "大唐甘肃发电有限公司（兰州二热）", "unit": "1号", "mw": 300, "type": "亚临界", "cod": 2004, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": 330, "note": "热电联产，待年报核实"},
+                    {"plant": "大唐甘肃发电有限公司（兰州二热）", "unit": "2号", "mw": 300, "type": "亚临界", "cod": 2005, "status": "在运", "flexible": None, "peak_cap_mw": None, "coal_rate": 330, "note": "热电联产，待年报核实"},
+                ],
                 "gas_units": [],
                 "wind_mw": 1200, "solar_mw": 600,
                 "generation": {"period": "2024年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
             },
             "新疆": {
-                "coal_units": [],
+                "coal_units": [
+                    # 吐哈电厂（吐鲁番/哈密），新疆坑口煤电
+                    {"plant": "大唐新疆发电有限公司（吐哈电厂）", "unit": "1号", "mw": 660, "type": "超超临界", "cod": 2017, "status": "在运", "flexible": True, "peak_cap_mw": 200, "coal_rate": 290, "note": "待年报核实"},
+                    {"plant": "大唐新疆发电有限公司（吐哈电厂）", "unit": "2号", "mw": 660, "type": "超超临界", "cod": 2018, "status": "在运", "flexible": True, "peak_cap_mw": 200, "coal_rate": 290, "note": "待年报核实"},
+                ],
                 "gas_units": [],
                 "wind_mw": 1000, "solar_mw": 800,
                 "generation": {"period": "2024年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
             },
             "宁夏": {
-                "coal_units": [],
+                "coal_units": [
+                    # 宁东能源化工基地配套电源，大容量外送机组
+                    {"plant": "大唐宁夏发电有限公司（宁东电厂）", "unit": "1号", "mw": 600, "type": "超临界", "cod": 2011, "status": "在运", "flexible": True, "peak_cap_mw": 180, "coal_rate": 305, "note": "坑口电站，待年报核实"},
+                    {"plant": "大唐宁夏发电有限公司（宁东电厂）", "unit": "2号", "mw": 600, "type": "超临界", "cod": 2012, "status": "在运", "flexible": True, "peak_cap_mw": 180, "coal_rate": 305, "note": "坑口电站，待年报核实"},
+                ],
                 "gas_units": [],
                 "wind_mw": 500, "solar_mw": 400,
                 "generation": {"period": "2024年", "total_twh": None, "thermal_twh": None, "renewable_twh": None, "yoy": None, "source": "待更新"},
