@@ -12,6 +12,7 @@ from datetime import datetime
 from scraper import (fetch_sina_weekly_spot, load_cached_spot, save_spot_cache,
                      fetch_coal_prices, load_cached_coal, save_coal_cache)
 from excel_gen import generate_excel
+from company_run import main as run_company_research
 
 DATA_DIR   = os.path.join(os.path.dirname(__file__), "data")
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "output")
@@ -62,6 +63,9 @@ def main():
     print(f"   现货数据周期：{spot_data.get('week', '—')}")
     print(f"   现货省份数量：{len(spot_data.get('data', []))} 个")
     print(f"   煤价数据条数：{len(coal_data.get('data', []))} 条")
+
+    print("\n[run] 生成公司研究 Excel...")
+    run_company_research()
     return output_path
 
 
