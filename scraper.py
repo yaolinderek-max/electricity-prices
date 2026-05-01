@@ -143,3 +143,77 @@ def load_cached_spot(path: str) -> dict:
 def save_spot_cache(data: dict, path: str):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+
+
+# ── 煤价 ─────────────────────────────────────────────────────
+
+def _hardcoded_coal_20260501() -> list:
+    """2026-05-01 内置动力煤价，来源：CCTD/估算"""
+    return [
+        {"region": "秦皇岛港",        "spec": "Q5500大卡", "type": "港口", "price": 748, "date": "2026-05-01", "source": "CCTD", "note": ""},
+        {"region": "秦皇岛港",        "spec": "Q5000大卡", "type": "港口", "price": 668, "date": "2026-05-01", "source": "CCTD", "note": ""},
+        {"region": "秦皇岛港",        "spec": "Q4500大卡", "type": "港口", "price": 598, "date": "2026-05-01", "source": "CCTD", "note": ""},
+        {"region": "山西大同",        "spec": "Q5500大卡", "type": "坑口", "price": 618, "date": "2026-05-01", "source": "估算", "note": "约值"},
+        {"region": "陕西榆林",        "spec": "Q5500大卡", "type": "坑口", "price": 575, "date": "2026-05-01", "source": "估算", "note": "约值"},
+        {"region": "内蒙古鄂尔多斯",  "spec": "Q5500大卡", "type": "坑口", "price": 428, "date": "2026-05-01", "source": "估算", "note": "约值"},
+    ]
+
+
+def _scrape_coal_sxcoal() -> dict:
+    """尝试从中国煤炭资源网抓取当日煤价（HTML表格）"""
+    url = "https://www.sxcoal.com/price/coalprice/index/type/1"
+    resp = requests.get(url, headers=HEADERS, timeout=15)
+    resp.encoding = "utf-8"
+    soup = BeautifulSoup(resp.text, "lxml")
+
+    rows = soup.select("table tr")
+    results = []
+    today = datetime.now().strftime("%Y-%m-%d")
+
+    for tr in rows[1:]:
+        cells = [td.get_text(strip=True) for td in tr.select("td")]
+        if len(cells) < 4:
+            continue
+        try:
+            price = float(cells[2].replace(",", ""))
+            if 100 < price < 3000:
+                results.append({
+                    "region": cells[0],
+                    "spec":   cells[1],
+                    "type":   "坑口" if "坑口" in cells[0] else "港口",
+                    "price":  price,
+                    "date":   today,
+                    "source": "中国煤炭资源网",
+                    "note":   "",
+                })
+        except (ValueError, IndexError):
+            continue
+
+    if len(results) < 3:
+        raise ValueError(f"sxcoal解析行数不足：{len(results)}")
+    return {"fetched_at": datetime.now().isoformat(), "data": results}
+
+
+def fetch_coal_prices() -> dict:
+    """抓取每日动力煤价格，在线失败则使用内置数据"""
+    builtin = {"fetched_at": datetime.now().isoformat(), "data": _hardcoded_coal_20260501()}
+    try:
+        online = _scrape_coal_sxcoal()
+        print(f"[scraper] 煤价在线数据有效（{len(online['data'])} 条）")
+        return online
+    except Exception as e:
+        print(f"[scraper] 煤价抓取失败: {e}，使用内置数据")
+    return builtin
+
+
+def load_cached_coal(path: str) -> dict:
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def save_coal_cache(data: dict, path: str):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)

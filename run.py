@@ -9,12 +9,14 @@ import os
 import json
 from datetime import datetime
 
-from scraper import fetch_sina_weekly_spot, load_cached_spot, save_spot_cache
+from scraper import (fetch_sina_weekly_spot, load_cached_spot, save_spot_cache,
+                     fetch_coal_prices, load_cached_coal, save_coal_cache)
 from excel_gen import generate_excel
 
 DATA_DIR   = os.path.join(os.path.dirname(__file__), "data")
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "output")
 CACHE_FILE = os.path.join(DATA_DIR, "spot_latest.json")
+COAL_CACHE = os.path.join(DATA_DIR, "coal_latest.json")
 
 
 def main():
@@ -34,21 +36,31 @@ def main():
                 "data": _hardcoded_spot_20260420(),
                 "fetched_at": datetime.now().isoformat(),
             }
+        coal_data = load_cached_coal(COAL_CACHE)
+        if not coal_data:
+            from scraper import _hardcoded_coal_20260501
+            coal_data = {"fetched_at": datetime.now().isoformat(), "data": _hardcoded_coal_20260501()}
     else:
         print("[run] 联网抓取现货电价周报...")
         spot_data = fetch_sina_weekly_spot()
         save_spot_cache(spot_data, CACHE_FILE)
         print(f"[run] 已缓存至 {CACHE_FILE}")
 
+        print("[run] 联网抓取动力煤价格...")
+        coal_data = fetch_coal_prices()
+        save_coal_cache(coal_data, COAL_CACHE)
+        print(f"[run] 已缓存至 {COAL_CACHE}")
+
     # 生成文件名（按当前年月）
     ts = datetime.now().strftime("%Y%m%d_%H%M")
     filename = f"electricity_prices_{ts}.xlsx"
     output_path = os.path.join(OUTPUT_DIR, filename)
 
-    generate_excel(spot_data, output_path)
+    generate_excel(spot_data, coal_data, output_path)
     print(f"\n✅ 报告已生成：{output_path}")
     print(f"   现货数据周期：{spot_data.get('week', '—')}")
     print(f"   现货省份数量：{len(spot_data.get('data', []))} 个")
+    print(f"   煤价数据条数：{len(coal_data.get('data', []))} 条")
     return output_path
 
 

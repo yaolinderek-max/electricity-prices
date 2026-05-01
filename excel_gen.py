@@ -14,7 +14,7 @@ from openpyxl.styles import (
 from openpyxl.utils import get_column_letter
 from openpyxl.formatting.rule import ColorScaleRule
 
-from provinces import PROVINCES, MECHANISM_PRICES, TIME_OF_USE_PRICES
+from provinces import PROVINCES, MECHANISM_PRICES, TIME_OF_USE_PRICES, MONTHLY_CONTRACT_PRICES
 
 # ── 配色 ────────────────────────────────────────────────
 C_HEADER_BG   = "1F4E79"   # 深蓝标题行
@@ -322,18 +322,152 @@ def build_tou(ws):
     n.font = Font(name="微软雅黑", size=9, color="595959", italic=True)
 
 
+# ── Sheet 5：中长期月度电价 ──────────────────────────────────
+def build_monthly_contract(ws):
+    ws.title = "中长期月度电价"
+    ws.sheet_view.showGridLines = False
+
+    # 取数据期标签（从第一条数据获取）
+    periods = {v["period"] for v in MONTHLY_CONTRACT_PRICES.values()}
+    period_label = sorted(periods)[-1] if periods else "—"
+
+    ws.merge_cells("A1:G1")
+    c = ws.cell(row=1, column=1,
+                value=f"各省中长期月度成交均价  |  数据期：{period_label}  |  标注\"估算\"表示非官方数据")
+    c.font = Font(name="微软雅黑", bold=True, size=13, color="FFFFFF")
+    c.fill = PatternFill("solid", fgColor=C_HEADER_BG)
+    c.alignment = Alignment(horizontal="center", vertical="center")
+    ws.row_dimensions[1].height = 32
+
+    headers = ["电网分区", "省份", "月度中长期均价\n(元/kWh)", "燃煤基准价\n(元/kWh)", "价差\n(元/kWh)", "数据来源", "备注"]
+    widths   = [10, 10, 18, 16, 14, 20, 14]
+    for ci, (h, w) in enumerate(zip(headers, widths), 1):
+        _apply(ws, 2, ci, _hdr(h, size=10))
+        _set_col_width(ws, ci, w)
+    ws.row_dimensions[2].height = 42
+
+    grid_order = ["华北", "东北", "华东", "华中", "南方", "山东", "西北", "西藏"]
+    row = 3
+    for grid in grid_order:
+        for p in [x for x in PROVINCES if x["grid"] == grid]:
+            bg = C_GRID_ODD if row % 2 == 1 else C_GRID_EVEN
+            mc = MONTHLY_CONTRACT_PRICES.get(p["name"])
+            benchmark = p["coal_benchmark"]
+
+            _apply(ws, row, 1, _cell(grid, bg=bg, bold=True, color="1F4E79"))
+            _apply(ws, row, 2, _cell(p["name"], bg=bg, align="left"))
+
+            if mc:
+                price = mc["price"]
+                diff  = round(price - benchmark, 4)
+                diff_bg = "E2EFDA" if diff > 0 else ("FFE0E0" if diff < -0.02 else bg)
+                diff_color = "375623" if diff > 0 else ("C00000" if diff < -0.02 else "000000")
+                _apply(ws, row, 3, _cell(price, bg=bg, fmt="0.0000"))
+                ws.cell(row=row, column=3).number_format = "0.0000"
+                _apply(ws, row, 4, _cell(benchmark, bg=bg, fmt="0.0000"))
+                ws.cell(row=row, column=4).number_format = "0.0000"
+                _apply(ws, row, 5, _cell(diff, bg=diff_bg, color=diff_color, fmt="0.0000"))
+                ws.cell(row=row, column=5).number_format = "0.0000"
+                _apply(ws, row, 6, _cell(mc.get("source", ""), bg=bg, align="left"))
+                _apply(ws, row, 7, _cell(mc.get("note", ""), bg=bg, align="left",
+                                         color="C00000" if mc.get("note") == "估算" else "000000"))
+            else:
+                _apply(ws, row, 3, _cell("—", bg=bg, color="999999"))
+                _apply(ws, row, 4, _cell(benchmark, bg=bg, fmt="0.0000"))
+                ws.cell(row=row, column=4).number_format = "0.0000"
+                for ci in [5, 6, 7]:
+                    _apply(ws, row, ci, _cell("—", bg=bg, color="999999"))
+
+            ws.row_dimensions[row].height = 18
+            row += 1
+
+    note_row = row
+    ws.merge_cells(f"A{note_row}:G{note_row}")
+    n = ws.cell(row=note_row, column=1,
+                value="绿色：成交均价高于燃煤基准价（发电侧有溢价）；红色：低于燃煤基准价2分以上（发电侧亏损压力）。"
+                      "数据由 Remote Agent 每月初自动更新。")
+    n.font = Font(name="微软雅黑", size=9, color="595959", italic=True)
+    n.alignment = Alignment(horizontal="left", wrap_text=True)
+    ws.row_dimensions[note_row].height = 24
+
+
+# ── Sheet 6：动力煤价 ────────────────────────────────────────
+def build_coal_prices(ws, coal_data: dict):
+    ws.title = "动力煤价"
+    ws.sheet_view.showGridLines = False
+
+    fetched_at = coal_data.get("fetched_at", "")[:10]
+    ws.merge_cells("A1:H1")
+    c = ws.cell(row=1, column=1,
+                value=f"主要产区/港口动力煤价格  |  数据日期：{fetched_at}  |  折算基准：发电煤耗305g/kWh标煤")
+    c.font = Font(name="微软雅黑", bold=True, size=13, color="FFFFFF")
+    c.fill = PatternFill("solid", fgColor=C_HEADER_BG)
+    c.alignment = Alignment(horizontal="center", vertical="center")
+    ws.row_dimensions[1].height = 32
+
+    headers = ["地区", "煤种规格", "价格\n(元/吨)", "类型", "折算度电\n燃料成本\n(元/kWh)", "日期", "数据来源", "备注"]
+    widths   = [16, 14, 12, 10, 16, 12, 16, 12]
+    for ci, (h, w) in enumerate(zip(headers, widths), 1):
+        _apply(ws, 2, ci, _hdr(h, size=10))
+        _set_col_width(ws, ci, w)
+    ws.row_dimensions[2].height = 48
+
+    for i, d in enumerate(coal_data.get("data", []), start=3):
+        bg = C_GRID_ODD if i % 2 == 1 else C_GRID_EVEN
+        price = d.get("price")
+
+        # 折算度电燃料成本：price(元/吨) * 实际煤耗(g/kWh) / 1,000,000
+        # 实际煤耗 = 305g/kWh标煤 * (7000 / 实际热值)
+        spec = d.get("spec", "")
+        kcal = 5500
+        for k in [5500, 5000, 4500, 4000]:
+            if str(k) in spec:
+                kcal = k
+                break
+        actual_consumption = 305 * 7000 / kcal  # g/kWh
+        fuel_cost = round(price * actual_consumption / 1_000_000, 4) if price else None
+
+        _apply(ws, i, 1, _cell(d.get("region", ""), bg=bg, align="left", bold=True))
+        _apply(ws, i, 2, _cell(spec, bg=bg, align="left"))
+        _apply(ws, i, 3, _cell(price, bg=bg))
+        _apply(ws, i, 4, _cell(d.get("type", ""), bg=bg))
+        _apply(ws, i, 5, _cell(fuel_cost, bg=bg, fmt="0.0000"))
+        if fuel_cost:
+            ws.cell(row=i, column=5).number_format = "0.0000"
+        _apply(ws, i, 6, _cell(d.get("date", ""), bg=bg))
+        src = d.get("source", "")
+        _apply(ws, i, 7, _cell(src, bg=bg, align="left",
+                               color="C00000" if src == "估算" else "000000"))
+        _apply(ws, i, 8, _cell(d.get("note", ""), bg=bg, align="left"))
+        ws.row_dimensions[i].height = 18
+
+    note_row = 3 + len(coal_data.get("data", []))
+    ws.merge_cells(f"A{note_row}:H{note_row}")
+    n = ws.cell(row=note_row, column=1,
+                value="折算公式：度电燃料成本 = 煤价(元/吨) × [305 × 7000 ÷ 实际热值(kcal/kg)] ÷ 1,000,000。"
+                      "在线抓取失败时使用内置数据。")
+    n.font = Font(name="微软雅黑", size=9, color="595959", italic=True)
+    n.alignment = Alignment(horizontal="left", wrap_text=True)
+    ws.row_dimensions[note_row].height = 24
+
+
 # ── 主函数 ────────────────────────────────────────────────
-def generate_excel(spot_data: dict, output_path: str):
+def generate_excel(spot_data: dict, coal_data: dict, output_path: str):
     wb = openpyxl.Workbook()
     ws1 = wb.active
     ws2 = wb.create_sheet()
     ws3 = wb.create_sheet()
     ws4 = wb.create_sheet()
 
+    ws5 = wb.create_sheet()
+    ws6 = wb.create_sheet()
+
     build_summary(ws1, spot_data)
     build_spot(ws2, spot_data)
     build_mechanism(ws3)
     build_tou(ws4)
+    build_monthly_contract(ws5)
+    build_coal_prices(ws6, coal_data)
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     wb.save(output_path)
