@@ -52,7 +52,7 @@ def main():
         print(f"[run] 已缓存至 {COAL_CACHE}")
 
     now = datetime.now()
-    month_dir = os.path.join(OUTPUT_DIR, "电力", now.strftime("%Y-%m"))
+    month_dir = os.path.join(OUTPUT_DIR, "电力", "每日数据", now.strftime("%Y-%m"))
     os.makedirs(month_dir, exist_ok=True)
     filename = f"electricity_prices_{now.strftime('%Y%m%d_%H%M')}.xlsx"
     output_path = os.path.join(month_dir, filename)
